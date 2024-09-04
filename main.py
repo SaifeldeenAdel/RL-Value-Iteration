@@ -56,12 +56,32 @@ def initialise_transitions():
                   transitions[state, action_index, new_pos] += prob_right
   
 
-def value_iteration(world, actions):
-  pass
+def value_iteration():
+  values = np.zeros(9)
+  V_hist =[values.copy()] 
+  
+  diff = 1
+
+  while diff >= 1e-6:
+    diff = 0
+    for state in range(9):
+      q = np.zeros(4)
+      v_old = values[state]
+
+      for action in range(4):
+        q[action] = sum(transitions[state, action, s] * (rewards[state] + DISCOUNT * values[s]) for s in range(4))
+        # print(q)
+
+      values[state] = np.max(q)
+      diff = max(diff, abs(v_old-values[state]))
+  return values
+
 
 def main():
   initialise_transitions()
-  print(transitions)
+  values = value_iteration()
+  print(values)
+  # print(transitions)
 
       
 
