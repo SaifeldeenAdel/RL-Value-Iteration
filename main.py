@@ -76,10 +76,18 @@ def value_iteration():
       diff = max(diff, abs(v_old-values[state]))
   return values
 
+def policy_derivation(values):
+  pass
+
+def display_policy(policy):
+  pass
 
 def main():
   initialise_transitions()
   values = value_iteration()
+  policy = policy_derivation(values)
+
+  display_policy(policy)
   print(values)
   # print(transitions)
 
