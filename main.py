@@ -140,13 +140,13 @@ def display_policy(policy):
 
 def main():
     initialise_transitions()
-    print("transition matricies:/n")
+    print("transition matricies:\n")
     print(transitions)
     values = value_iteration()
-    print(f"final values:/n{values}")
+    print(f"final values:\n{values}")
     policy = policy_derivation(values)
-    print(f"final policy maticies:/n{policy}")
-    print("final optimal policy:/n")
+    print(f"final policy maticies:\n{policy}")
+    print("final optimal policy:\n")
     display_policy(policy)
     # print(values)
     # print(transitions)
