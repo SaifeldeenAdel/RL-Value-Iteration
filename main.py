@@ -1,7 +1,7 @@
 import numpy as np
 
 DISCOUNT = 0.99
-R = -3
+R = 3
 ROWS = 3
 COLS = 3
 ACTIONS = ["T", "B", "L", "R"]
@@ -127,17 +127,27 @@ def policy_derivation(values):
 
 
 def display_policy(policy):
-    pass
+    action_symbols = ["↑", "↓", "←", "→"]
+    
+    for i in range(ROWS):
+        row_policy = ""
+        for j in range(COLS):
+            state = i * COLS + j
+            action = np.argmax(policy[state])
+            row_policy += f" {action_symbols[action]} "
+        print(row_policy)
 
 
 def main():
     initialise_transitions()
+    print("transition matricies:/n")
     print(transitions)
     values = value_iteration()
-    print(f"final values {values}")
+    print(f"final values:/n{values}")
     policy = policy_derivation(values)
-    print(f"policy: {policy}")
-    # display_policy(policy)
+    print(f"final policy maticies:/n{policy}")
+    print("final optimal policy:/n")
+    display_policy(policy)
     # print(values)
     # print(transitions)
 
